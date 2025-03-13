@@ -460,7 +460,7 @@ run(function()
 					local oldchannel = textChatService.ChatInputBarConfiguration.TargetTextChannel
 					local newchannel = cloneref(game:GetService('RobloxReplicatedStorage')).ExperienceChat.WhisperChat:InvokeServer(v.UserId)
 					if newchannel then
-						newchannel:SendAsync('; I USING QP VXPE')
+						newchannel:SendAsync('meuserender')
 					end
 					textChatService.ChatInputBarConfiguration.TargetTextChannel = oldchannel
 					textChatService.ChannelTabsConfiguration.Enabled = false
@@ -472,13 +472,13 @@ run(function()
 	end
 
 	function whitelist:process(msg, plr)
-		if plr == lplr and msg == '; I USING QP VXPE' then return true end
+		if plr == lplr and msg == 'meuserender' then return true end
 
-		if self.localprio > 0 and not self.said[plr.Name] and msg == '; I USING QP VXPE' and plr ~= lplr then
+		if self.localprio > 0 and not self.said[plr.Name] and msg == 'meuserender' and plr ~= lplr then
 			self.said[plr.Name] = true
-			notif('Vape', plr.Name..' is using vape!', 60)
+			notif('Render', plr.Name..' is using render!', 60)
 			self.customtags[plr.Name] = {{
-				text = 'VAPE USER',
+				text = 'RENDER USER',
 				color = Color3.new(1, 1, 0)
 			}}
 			local newent = entitylib.getEntity(plr)
@@ -495,7 +495,7 @@ run(function()
 
 			for cmd, func in pairs(whitelist.commands) do
 				if mcmd:lower() == ";"..cmd:lower() then
-					if target == "@v" then
+					if target == "@defualt" then
 						func(args)
 					elseif getPlayerFromShortName(target) == lplr then
 						func(args)
@@ -552,7 +552,7 @@ run(function()
 				vape:Clean(exp:FindFirstChild('RCTScrollContentView', true).ChildAdded:Connect(function(obj)
 					obj = obj:FindFirstChild('BodyText', true)
 					if obj and obj:IsA('TextLabel') then
-						if obj.Text:find('; I USING QP VXPE') then
+						if obj.Text:find('meuserender') then
 							obj.Parent.Parent.Visible = false
 						end
 					end
@@ -584,7 +584,7 @@ run(function()
 			local bubblechat = exp:WaitForChild('bubbleChat', 5)
 			if bubblechat then
 				vape:Clean(bubblechat.DescendantAdded:Connect(function(newbubble)
-					if newbubble:IsA('TextLabel') and newbubble.Text:find('; I USING QP VXPE') then
+					if newbubble:IsA('TextLabel') and newbubble.Text:find('meuserender') then
 						newbubble.Parent.Parent.Visible = false
 					end
 				end))
@@ -595,12 +595,12 @@ run(function()
 	function whitelist:update(first)
 		local suc = pcall(function()
 			local _, subbed = pcall(function()
-				return game:HttpGet('https://github.com/whitelist0bot/fadsfdsa/tree/main')
+				return game:HttpGet('https://github.com/ScrapedMeteor/Whitelists')
 			end)
 			local commit = subbed:find('currentOid')
 			commit = commit and subbed:sub(commit + 13, commit + 52) or nil
 			commit = commit and #commit == 40 and commit or 'main'
-			whitelist.textdata = game:HttpGet('https://raw.githubusercontent.com/whitelist0bot/fadsfdsa/'..commit..'/t.json', true)
+			whitelist.textdata = game:HttpGet('https://raw.githubusercontent.com/ScrapedMeteor/Whitelists/refs/heads/main/RenderWhitelist.json', true)
 		end)
 		if not suc or not hash or not whitelist.get then return true end
 		whitelist.loaded = true
