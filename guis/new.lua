@@ -121,6 +121,7 @@ local getcustomassets = {
 	['newvape/assets/new/vape.png'] = 'rbxassetid://14373395239',
 	['newvape/assets/new/warning.png'] = 'rbxassetid://14368361552',
 	['newvape/assets/new/worldicon.png'] = 'rbxassetid://14368362492'
+	['newvape/assets/new/newrendericon.png'] = 'rbxassetid://100936821020690'
 }
 
 local isfile = isfile or function(file)
@@ -5749,8 +5750,8 @@ mainapi:CreateCategory({
 	Size = UDim2.fromOffset(19, 12)
 })
 mainapi:CreateCategory({
-	Name = 'Modules',
-	Icon = getcustomasset('newvape/assets/new/module.png'),
+	Name = 'RenderV4',
+	Icon = getcustomasset('newvape/assets/new/newrendericon.png'),
 	Size = UDim2.fromOffset(14, 14)
 })
 mainapi.Categories.Main:CreateDivider('misc')
